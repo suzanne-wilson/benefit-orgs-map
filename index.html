@@ -127,6 +127,19 @@
               'source': {
                 'type': 'geojson',
                 'data': data
+              },
+              'paint': {
+                'circle-radius': 5,
+                'circle-color': [ 'match',
+                                  ['get', 'Type'],
+                                  'R',
+                                  '#663399',
+                                  'S',
+                                  '#00FF7F',
+                                  'U',
+                                  '#ff1493',
+                                  '#FF00FF'
+                                  ]
               }
             });
 
@@ -139,7 +152,7 @@
               //set popup text
               //You can adjust the values of the popup to match the headers of your CSV.
               // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-              // var description = `<h3>` + e.features[0].properties.Organization + `</h3>` + `<h4>` + `<b>` + `Address: ` + e.features[0].properties.Address +  `</h4>` +  `<h4>` + `<b>` + `Delivery Person: ` + e.features[0].properties.DeliveryPerson + `</h4>` + `</b>` + `<h4>` + `<b>`  + `2022 Notes: ` + e.features[0].properties.Notes2022 + `</h4>` + `</b>`+ `<h4>` + `<b>` ;
+               var description = `<h3>` + e.features[0].properties.Organization + `</h3>` + `<h4>` + `<b>` + `Address: ` + e.features[0].properties.Address +  `</h4>` +  `<h4>` + `<b>` + `Delivery Person: ` + e.features[0].properties.DeliveryPerson + `</h4>` + `</b>` + `<h4>` + `<b>`  + `2022 Notes: ` + e.features[0].properties.Notes2022 + `</h4>` + `</b>`+ `<h4>` + `<b>` ;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears

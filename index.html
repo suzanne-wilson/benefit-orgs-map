@@ -113,7 +113,6 @@
       });
 
 
-
       function makeGeoJSON(csvData) {
         csv2geojson.csv2geojson(csvData, {
           latfield: 'Latitude',
@@ -122,29 +121,23 @@
         }, function (err, data) {
           map.on('load', function () {
 
-            //Add the layer to the map
-            map.addLayer({
-              'id': 'csvData',
-              'type': 'circle',
-              'source': {
-                'type': 'geojson',
-                'data': data
-              },
-              'paint': {
-                'circle-radius': 5,
-                'circle-color': [ 'match',
-                                  ['get', 'Type'],
-                                  'R',
-                                  '#663399',
-                                  'S',
-                                  '#00FF7F',
-                                  'U',
-                                  '#ff1493',
-                                  '#FF00FF'
-                                  ]
+              
+              map.addLayer({
+                  'id': 'poi-labels',
+                  'type': 'symbol',
+                  'source': 'csvData',
+                  'layout': {
+                  'text-field': ['get', 'poiNumber'],
+                  'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+                  'text-radial-offset': 0.5,
+                  'text-justify': 'auto'
+                    //,
+                  //'icon-image': ['get', 'icon']
               }
-            });
+              });
 
+              map.rotateTo(180, { duration: 10000 });
+              });
 
             // When a click event occurs on a feature in the csvData layer, open a popup at the
             // location of the feature, with description HTML from its properties.

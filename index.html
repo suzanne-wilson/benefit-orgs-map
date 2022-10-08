@@ -109,11 +109,11 @@
         //  url: 'https://docs.google.com/spreadsheets/d/1XiZkEDjf8VXj9aa_HOvmU017jP3zhmfPPtZaR9_yUcE/gviz/tq?tqx=out:csv&sheet=Sheet31',
         url: 'https://docs.google.com/spreadsheets/d/1Dykqm_ZH6sph7khl2be-50zrHv1tFGlzivRokk7Q9vI/gviz/tq?tqx=out:csv&sheet=Orgmapdata',
         dataType: "text",
-        success: function (csvData) { makeGeoJSON(csvData); }
+        success: function (Orgmapdata) { makeGeoJSON(Orgmapdata); }
       });
 
-      function makeGeoJSON(csvData) {
-        csv2geojson.csv2geojson(csvData, {
+      function makeGeoJSON(Orgmapdata) {
+        csv2geojson.csv2geojson(Orgmapdata, {
           latfield: 'Latitude',
           lonfield: 'Longitude',
           delimiter: ','
@@ -122,7 +122,7 @@
 
             //Add the layer to the map
             map.addLayer({
-              'id': 'csvData',
+              'id': 'Orgmapdata',
               'type': 'circle',
               'source': {
                 'type': 'geojson',
@@ -138,7 +138,19 @@
                                   ]
               }
             });
-
+            map.addLayer({
+            'id': 'poi-labels',
+            'type': 'symbol',
+            'source': 'Orgmapdata',
+            'layout': {
+            'text-field': ['get', 'poiNumber'],
+            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+            'text-radial-offset': 0.5,
+            'text-justify': 'auto',
+            'icon-image': ['get', 'icon']
+            }
+            });
+ 
 
             // When a click event occurs on a feature in the csvData layer, open a popup at the
             // location of the feature, with description HTML from its properties.

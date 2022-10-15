@@ -138,19 +138,7 @@
                                   ]
               }
             });
-            map.addLayer({
-            'id': 'poi-labels',
-            'type': 'symbol',
-            'source': 'Orgmapdata',
-            'layout': {
-            'text-field': ['get', 'poiNumber'],
-            'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-            'text-radial-offset': 0.5,
-            'text-justify': 'auto',
-            'icon-image': ['get', 'icon']
-            }
-            });
- 
+
             map.addLayer({
             'id': 'poinames',
             'type': 'symbol',
